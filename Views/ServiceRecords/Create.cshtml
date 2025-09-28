@@ -1,0 +1,63 @@
+﻿@model AutoStats.Models.ServiceRecord
+
+@{
+    ViewData["Title"] = "Dodaj servis";
+}
+
+<h2>Dodaj servis</h2>
+
+<form asp-action="Create">
+    <input type="hidden" asp-for="VehicleId" />
+
+    <div class="form-group">
+        <label asp-for="ServiceDate">Datum Servisa</label>
+        <input asp-for="ServiceDate" type="date" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Mileage">Kilometraža</label>
+        <input asp-for="Mileage" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServiceType">Vrsta servisa</label>
+        <select asp-for="ServiceType" class="form-control" asp-items="ViewBag.ServiceTypes"></select>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Description">Detaljan opis</label>
+        <textarea asp-for="Description" class="form-control"></textarea>
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Cost">Ukupna cijena popravka</label>
+        <input asp-for="Cost" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="ServiceCenter" class="control-label">Naziv auto servisa</label>
+        <input asp-for="ServiceCenter" class="form-control" />
+        <span asp-validation-for="ServiceCenter" class="text-danger"></span>
+    </div>
+
+
+    <div class="form-group">
+        <label asp-for="InvoiceNumber">Broj i datum računa</label>
+        <input asp-for="InvoiceNumber" class="form-control" />
+    </div>
+
+    <div class="form-group">
+        <label asp-for="Warranty">Garancija</label>
+        <input asp-for="Warranty" class="form-control" />
+    </div>
+
+    <button type="submit" class="btn btn-primary">Sačuvaj</button>
+</form>
+
+<a asp-controller="Vehicles" asp-action="Details" asp-route-id="@ViewBag.VehicleId">Nazad na vozilo</a>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

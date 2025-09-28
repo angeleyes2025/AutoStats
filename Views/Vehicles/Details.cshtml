@@ -1,0 +1,42 @@
+﻿@model AutoStats.Models.Vehicle
+
+@{
+    ViewData["Title"] = "Detalji vozila";
+}
+
+<h1>Detalji vozila</h1>
+
+<div>
+    <h4>Vozilo</h4>
+    <hr />
+    <dl class="row">
+        <dt class="col-sm-3">Proizvođač</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Make)</dd>
+
+        <dt class="col-sm-3">Model vozila</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Model)</dd>
+
+        <dt class="col-sm-3">Oznaka registracije</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.RegistrationNumber)</dd>
+
+        <dt class="col-sm-3">Godina proizvodnje</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.Year)</dd>
+
+        <dt class="col-sm-3">Broj šasije</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.ChassisNumber)</dd>
+
+        <dt class="col-sm-3">Zapremina motora (cm³)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.EngineDisplacement)</dd>
+
+        <dt class="col-sm-3">Snaga (kW)</dt>
+        <dd class="col-sm-9">@Html.DisplayFor(model => model.PowerKW)</dd>
+
+    </dl>
+</div>
+
+<div class="mt-3">
+    <a asp-action="Edit" asp-route-id="@Model?.Id" class="btn btn-primary">Uredi</a>
+    <a asp-action="Index" class="btn btn-secondary">Nazad na listu vozila</a>
+    <a asp-controller="ServiceRecords" asp-action="ByVehicle" asp-route-vehicleId="@Model.Id" class="btn btn-info">Prikaži servisne zapise</a>
+    <a asp-controller="ServiceRecords" asp-action="Create" asp-route-vehicleId="@Model.Id" class="btn btn-success">Dodaj servis</a>
+</div>

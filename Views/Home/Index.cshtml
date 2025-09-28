@@ -1,0 +1,56 @@
+﻿@{
+    ViewData["Title"] = "Početna";
+}
+
+<div class="homepage-container">
+    <div class="container text-center py-5 homepage-content">
+        <h1 class="mb-4">Dobrodošli,<br /></h1>
+
+        <p class="lead mb-4">
+            <strong>Autostats</strong> je vaša nova, digitalna servisna knjižica za automobil. <br />
+            Aplikacija Vam nudi jednostavan i vizuelno praktičan pregled statistike i pomaže Vam da uredno vodite evidenciju o svemu što se dešava s vašim vozilom.
+        </p>
+
+        <p class="lead mb-4">
+            Imate mogućnost da unesete sve detalje o Vašem automobilu, kao i da evidentirate svaki servis, <br />
+            pri tome da imate uvid u detalje i troškove.<br />
+        </p>
+
+        @if (!User.Identity.IsAuthenticated)
+        {
+            <div class="d-flex justify-content-center gap-3 mt-5">
+                <a class="btn btn-primary px-4" asp-area="Identity" asp-page="/Account/Login">Prijavi se</a>
+                <a class="btn btn-outline-primary px-4" asp-area="Identity" asp-page="/Account/Register">Registruj se</a>
+            </div>
+        }
+    </div>
+    <div class="homepage-background"></div>
+</div>
+
+<style>
+    .homepage-container {
+        position: relative;
+        min-height: 90vh;
+        background-color: white;
+        overflow: hidden;
+    }
+
+    .homepage-content {
+        position: relative;
+        z-index: 1;
+        padding-bottom: 150px; /* dodatno da se sadržaj ne pokrije ikonicama */
+    }
+
+    .homepage-background {
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 25%;
+        background: url('/images/autostats-bg.png') no-repeat center bottom;
+        background-size: cover;
+        opacity: 1.0;
+        z-index: 0;
+        pointer-events: none;
+    }
+</style>

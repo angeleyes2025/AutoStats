@@ -1,0 +1,50 @@
+﻿@model IEnumerable<AutoStats.Models.Vehicle>
+
+@{
+    ViewData["Title"] = "Moja vozila";
+}
+
+<h1 class="mb-4">Moja vozila</h1>
+
+<table class="table table-bordered table-striped text-center align-middle shadow-sm">
+    <thead class="table-light">
+        <tr>
+            <th>Proizvođač</th>
+            <th>Model vozila</th>
+            <th>Oznaka registracije</th>
+            <th>Godina</th>
+            <th>Broj šasije</th>
+            <th>Akcije</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.Make</td>
+                <td>@item.Model</td>
+                <td>@item.RegistrationNumber</td>
+                <td>@item.Year</td>
+                <td>@item.ChassisNumber</td>
+                <td>
+                    <div class="d-flex justify-content-center gap-2 flex-wrap">
+                        <a asp-action="Edit" asp-route-id="@item.Id" class="btn btn-sm btn-primary">Uredi</a>
+                        <a asp-action="Details" asp-route-id="@item.Id" class="btn btn-sm btn-info">Detalji</a>
+                        <a asp-action="Delete" asp-route-id="@item.Id" class="btn btn-sm btn-danger">Obriši</a>
+                    </div>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+<!-- Dugme ispod tabele -->
+<div class="mt-3">
+    <a asp-action="Create" class="btn btn-success">+ Dodaj novo vozilo</a>
+</div>
+
+<style>
+    th, td {
+        vertical-align: middle !important;
+    }
+</style>

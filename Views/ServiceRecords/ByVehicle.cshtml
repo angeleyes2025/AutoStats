@@ -1,0 +1,126 @@
+﻿@model List<AutoStats.Models.ServiceRecord>
+
+@{
+    ViewData["Title"] = "Evidencija servisa";
+    var vehicleId = ViewBag.VehicleId;
+    var vehicleInfo = ViewBag.VehicleInfo as string;
+    var selectedFilter = ViewBag.SelectedFilter as string;
+    var serviceTypes = ViewBag.ServiceTypes as List<string>;
+}
+
+<!-- NASLOV -->
+<div class="text-center my-2 mb-4">
+    <h2 class="d-inline-flex align-items-center gap-2 px-3 py-2 bg-white rounded-3 shadow-sm">
+        <i class="fas fa-screwdriver-wrench text-primary fs-5"></i>
+        <span>
+            <span class="text-primary fw-bold">Evidencija servisa</span>
+            @vehicleInfo
+        </span>
+    </h2>
+</div>
+
+<!-- GLAVNI SADRŽAJ -->
+<div class="container-fluid px-4">
+    <div class="row">
+        <!-- FILTERI -->
+        <div class="col-md-2">
+            <h5 class="mb-2 text-center">Filter po tipu servisa</h5>
+            <div class="d-grid gap-2">
+                <a asp-action="ByVehicle"
+                   asp-route-vehicleId="@vehicleId"
+                   class="btn btn-outline-dark filter-btn @(string.IsNullOrEmpty(selectedFilter) ? "active-filter" : "")">
+                    Svi servisi
+                </a>
+
+                @foreach (var type in serviceTypes)
+                {
+                    <a asp-action="ByVehicle"
+                       asp-route-vehicleId="@vehicleId"
+                       asp-route-filter="@type"
+                       class="btn btn-outline-primary filter-btn @(selectedFilter == type ? "active-filter" : "")">
+                        @type
+                    </a>
+                }
+            </div>
+        </div>
+
+        <!-- TABELA -->
+        <div class="col-md-10">
+            <div class="table-responsive">
+                <table class="table align-middle table-bordered shadow-sm">
+                    <thead class="table-dark">
+                        <tr>
+                            <th class="text-center">Datum</th>
+                            <th class="text-center">Tip</th>
+                            <th class="text-center">Kilometraža</th>
+                            <th class="text-center">Opis</th>
+                            <th class="text-center">Cijena (KM)</th>
+                            <th class="text-center">Akcije</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var s in Model)
+                        {
+                            <tr>
+                                <td>@s.ServiceDate.ToShortDateString()</td>
+                                <td>@s.ServiceType</td>
+                                <td>@s.Mileage</td>
+                                <td class="description-column">@s.Description</td>
+                                <td>@s.Cost.ToString("0.00")</td>
+                                <td class="text-center white-space-nowrap">
+                                    <a asp-action="Edit" asp-route-id="@s.Id" class="btn btn-sm btn-warning me-1">Uredi</a>
+                                    <a asp-action="Delete" asp-route-id="@s.Id" class="btn btn-sm btn-danger"
+                                       onclick="return confirm('Da li ste sigurni da želite obrisati ovaj servis?');">Obriši</a>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+
+            <!-- Dugmad ispod tabele -->
+            <div class="d-flex justify-content-between align-items-center mt-3">
+                <a asp-controller="Vehicles" asp-action="Details" asp-route-id="@vehicleId" class="btn btn-sm btn-outline-primary">← Nazad na vozilo</a>
+                <div>
+                    <a asp-action="Create" asp-route-vehicleId="@vehicleId" class="btn btn-sm btn-success me-2">+ Dodaj servis</a>
+                    <a asp-action="ExportToPdf" asp-route-vehicleId="@vehicleId" class="btn btn-sm btn-outline-primary">📄 Izvezi u PDF</a>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- CSS STIL -->
+<style>
+    .filter-btn {
+        font-size: 0.95rem;
+        padding: 8px 12px;
+        width: 100%;
+        text-align: center;
+    }
+
+        .filter-btn.active-filter {
+            font-weight: bold;
+            background-color: #343a40;
+            color: white !important;
+            border-color: #343a40;
+        }
+
+    .description-column {
+        max-width: 250px;
+        overflow-wrap: break-word;
+        word-break: break-word;
+    }
+
+    .white-space-nowrap {
+        white-space: nowrap;
+    }
+
+    media (max-width: 768px) {
+        .filter-btn
+
+    {
+        font-size: 0.85rem;
+    }
+
+    }</style>

@@ -1,0 +1,72 @@
+﻿@model AutoStats.Models.ServiceRecord
+
+@{
+    ViewData["Title"] = "Uredi servis";
+}
+
+<h2>Uredi servis</h2>
+<hr />
+<div class="row">
+    <div class="col-md-6">
+        <form asp-action="Edit">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+
+            <input type="hidden" asp-for="Id" />
+            <input type="hidden" asp-for="VehicleId" />
+
+            <div class="form-group mb-2">
+                <label asp-for="ServiceDate" class="form-label">Datum</label>
+                <input asp-for="ServiceDate" class="form-control" type="date" />
+                <span asp-validation-for="ServiceDate" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="ServiceType" class="form-label">Tip servisa</label>
+                <select asp-for="ServiceType" class="form-control" asp-items="ViewBag.ServiceTypes"></select>
+                <span asp-validation-for="ServiceType" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Mileage" class="form-label">Kilometraža</label>
+                <input asp-for="Mileage" class="form-control" />
+                <span asp-validation-for="Mileage" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-2">
+                <label asp-for="Description" class="form-label">Opis</label>
+                <textarea asp-for="Description" class="form-control"></textarea>
+                <span asp-validation-for="Description" class="text-danger"></span>
+            </div>
+
+            <div class="form-group mb-3">
+                <label asp-for="Cost" class="form-label">Cijena (KM)</label>
+                <input asp-for="Cost" class="form-control" />
+                <span asp-validation-for="Cost" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <label asp-for="ServiceCenter" class="control-label"></label>
+                <input asp-for="ServiceCenter" class="form-control" />
+                <span asp-validation-for="ServiceCenter" class="text-danger"></span>
+            </div>
+
+
+            <div class="form-group">
+                <label asp-for="InvoiceNumber" class="control-label"></label>
+                <input asp-for="InvoiceNumber" class="form-control" />
+                <span asp-validation-for="InvoiceNumber" class="text-danger"></span>
+            </div>
+
+            <div class="form-group">
+                <input type="submit" value="Sačuvaj izmjene" class="btn btn-primary" />
+                <a asp-action="ByVehicle" asp-route-vehicleId="@Model.VehicleId" class="btn btn-secondary">Nazad</a>
+            </div>
+        </form>
+    </div>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}
