@@ -1,0 +1,61 @@
+# ---- Visual Studio / build artifacts ----
+.vs/
+.vscode/
+*.user
+*.suo
+*.sln.docstates
+*.sln.DotSettings.user
+
+# Build output
+bin/
+obj/
+out/
+[Bb]uild/
+[Bb]uildArtifacts/
+
+# NuGet
+*.nupkg
+packages/
+.nuget/
+
+# Logs / crash dumps
+*.svclog
+*.log
+*.tlog
+
+# Node / frontend
+node_modules/
+wwwroot/lib/
+wwwroot/dist/
+dist/
+
+# OS files
+.DS_Store
+Thumbs.db
+ehthumbs.db
+
+# Rider / JetBrains
+.idea/
+
+# Publish profiles (often contain secrets)
+Properties/PublishProfiles/*
+
+# User secrets / local configs
+appsettings.Development.json
+appsettings.Local.json
+appsettings.*.Secrets.json
+secrets.json
+
+# EF Core Migrations snapshots (keep if you want; ignore if generated locally per env)
+# Migrations/
+
+# Optional: ignore SQLite DB if it's local-only
+*.db
+*.sqlite
+*.sqlite3
+
+# Coverage / test artifacts
+coverage/
+TestResults/
+*.coverage
+*.coveragexml
