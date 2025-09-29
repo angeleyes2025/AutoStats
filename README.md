@@ -17,11 +17,11 @@ Cilj aplikacije je da zamijeni papirnu servisnu knjižicu i pruži jednostavan p
 
 ## 🛠️ Korištene tehnologije
 - **ASP.NET Core 8.0**  
-- **Entity Framework Core**  
+- **Entity Framework Core 8.0.17**  
 - **C# 12**  
 - **QuestPDF** (za generisanje PDF izvještaja)  
 - **Bootstrap/Tailwind CSS** (modernizovani frontend dizajn)  
-- **SQL Server / SQLite** (baza podataka)  
+- **Microsoft EntityFrameworkCore SqlServer 8.0.17"** (baza podataka)  
 
 ---
 
